@@ -1,0 +1,3 @@
+{
+    "modules": ["qmk/custom_shift_keys"]
+}
