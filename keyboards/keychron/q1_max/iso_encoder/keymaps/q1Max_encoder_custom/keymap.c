@@ -23,25 +23,39 @@ enum layers {
     MAC_FN,
     WIN_BASE,
     WIN_FN,
+    // MAC_EXTRA,
+};
+
+enum custom_keycodes {
+    C_HE = SAFE_RANGE,
+    C_TIL, // ~
 };
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [MAC_BASE] = LAYOUT_iso_83(
         KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,     KC_F12,   KC_DEL,             KC_MUTE,
-        KC_LBRC,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,    KC_EQL,   KC_BSPC,            KC_PGUP,
-        KC_TAB,   KC_LBRC,  KC_COMM,  KC_DOT,   KC_P,     KC_Y,     KC_F,     KC_G,     KC_C,     KC_R,     KC_L,     KC_NUHS,    KC_QUOT,                      KC_PGDN,
-        KC_CAPS,  KC_A,     KC_O,     KC_E,     KC_U,     KC_I,     KC_D,     KC_H,     KC_T,     KC_N,     KC_S,     KC_QUOT,    KC_NUHS,  KC_ENT,             KC_HOME,
+        XXXXXXX,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     XXXXXXX,    ALGR(KC_8),   KC_BSPC,            KC_PGUP,
+        KC_TAB,   KC_LBRC,  KC_COMM,  KC_DOT,   KC_P,     KC_Y,     KC_F,     KC_G,     KC_C,     KC_R,     KC_L,     KC_MINS,    KC_NUHS,                      KC_PGDN,
+        KC_CAPS,  KC_A,     KC_O,     KC_E,     KC_U,     KC_I,     KC_D,     KC_H,     KC_T,     KC_N,     KC_S,     KC_SLSH,    XXXXXXX,  KC_ENT,             KC_HOME,
         KC_LSFT,  KC_QUOT,  KC_SCLN,  KC_Q,     KC_J,     KC_K,     KC_X,     KC_B,     KC_M,     KC_W,     KC_V,     KC_Z,                 KC_RSFT,  KC_UP,
         KC_LCTL,  KC_LOPT,  KC_LCMD,                                KC_SPC,                                 MO(MAC_FN),  KC_RCMD, KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
 
     [MAC_FN] = LAYOUT_iso_83(
         _______,  KC_BRID,  KC_BRIU,  KC_MCTL,  KC_LPAD,  RM_VALD,  RM_VALU,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,            RM_TOGG,
         _______,  BT_HST1,  BT_HST2,  BT_HST3,  P2P4G,    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
-        RGB_TOG,  KC_NUHS,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                      _______,
-        _______,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            KC_END,
+        RGB_TOG,  KC_NUHS,  ALGR(KC_Q),  S(KC_4),  KC_GRV,  C_HE,  _______,  _______,  C_TIL,  _______,  _______,  _______,  _______,                      _______,
+        _______,  S(KC_8), ALGR(KC_8),  ALGR(KC_9),  S(KC_9),  S(KC_5),  _______,  KC_RBRC,  S(KC_RBRC),  _______,  _______,  _______,  _______,  _______,            KC_END,
         _______,  _______,  _______,  _______,  _______,  _______,  BAT_LVL,  NK_TOGG,  _______,  _______,  _______,  _______,            _______,  _______,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______),
+
+    // [MAC_FN] = LAYOUT_iso_83(
+    //     _______,  KC_BRID,  KC_BRIU,  KC_MCTL,  KC_LPAD,  RM_VALD,  RM_VALU,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,            RM_TOGG,
+    //     _______,  BT_HST1,  BT_HST2,  BT_HST3,  P2P4G,    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
+    //     RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                      _______,
+    //     _______,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            KC_END,
+    //     _______,  _______,  _______,  _______,  _______,  _______,  BAT_LVL,  NK_TOGG,  _______,  _______,  _______,  _______,            _______,  _______,
+    //     _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______),
 
     [WIN_BASE] = LAYOUT_iso_83(
         KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_DEL,             KC_MUTE,
@@ -70,6 +84,14 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 };
 #endif // ENCODER_MAP_ENABLE
 
+void handle_special_chars(char nonShifted, char shifted) {
+    if (get_mods() & MOD_MASK_SHIFT) {
+        send_char(shifted);
+    } else {
+        send_char(nonShifted);
+    }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_keychron_common(keycode, record)) {
         return false;
@@ -77,26 +99,76 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_NUHS:
             if (record->event.pressed) {
-                if (get_mods() & MOD_MASK_SHIFT) {
-                    send_char('"');
-                    return false;
-                }
-                send_char('\'');
+                handle_special_chars('\'', '"');
+            }
+            return false;
+        case KC_MINS:
+            if (record->event.pressed) {
+                handle_special_chars('/', '?');
+            }
+            return false;
+        case C_HE:
+            if (record->event.pressed) {
+                handle_special_chars('=', '#');
+            }
+            return false;
+        case C_TIL:
+            if (record->event.pressed) {
+                send_char('~');
             }
             return false;
     }
     return true;
 }
 
-// const key_override_t fn_override = {.trigger_mods    = MOD_MASK_SHIFT,                      //
-//                                     .suppressed_mods = MOD_BIT(KC_RSFT) | MOD_BIT(KC_LSFT), //
-//                                     .trigger         = KC_NUHS,                             //
-//                                     .replacement     = S(KC_2),                             //
-//                                     .enabled         = NULL};
+// Shifted ( => {
+const key_override_t write_boo = {
+    .trigger_mods    = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
+    .layers          = ~0,
+    .suppressed_mods = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
+    .options         = ko_option_one_mod,
+    .trigger         = S(KC_8),
+    .replacement     = ALGR(KC_7),
+    .enabled         = NULL,
+};
 
-// const key_override_t write_double = ko_make_basic(MOD_MASK_SHIFT, KC_NUHS, KC_DQT);
-// const key_override_t test = ko_make_basic(MOD_MASK_SHIFT, KC_1, KC_2);
+// Shifted ) => }
+const key_override_t write_boc = {
+    .trigger_mods    = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
+    .layers          = ~0,
+    .suppressed_mods = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
+    .options         = ko_option_one_mod,
+    .trigger         = S(KC_9),
+    .replacement     = ALGR(KC_0),
+    .enabled         = NULL,
+};
+
+// Shifted [ => <
+const key_override_t write_bio = {
+    .trigger_mods    = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
+    .layers          = ~0,
+    .suppressed_mods = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
+    .options         = ko_option_one_mod,
+    .trigger         = ALGR(KC_8),
+    .replacement     = KC_NUBS,
+    .enabled         = NULL,
+};
+
+// Shifted ] => >
+const key_override_t write_bic = {
+    .trigger_mods    = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
+    .layers          = ~0,
+    .suppressed_mods = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
+    .options         = ko_option_one_mod,
+    .trigger         = ALGR(KC_9),
+    .replacement     = S(KC_NUBS),
+    .enabled         = NULL,
+};
 
 // This globally defines all key overrides to be used
-// const key_override_t *key_overrides[] = {&fn_override, &test};
-const key_override_t *key_overrides[] = {};
+const key_override_t *key_overrides[] = {
+    &write_boo,
+    &write_boc,
+    &write_bio,
+    &write_bic,
+};
