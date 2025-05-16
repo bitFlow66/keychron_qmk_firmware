@@ -12,6 +12,13 @@
   `qmk compile -kb keychron/q1_max/iso_encoder -km q1Max_encoder_custom`
 - Flash with `qmk flash path/to/*.bin`
 
+[K3 Max](./keyboards/keychron/k1_max/iso/rgb/keymaps)
+
+- Compile and flash with
+  `qmk flash -kb keychron/k1_max/iso/rgb -km k3Max_custom`
+- Compile with `qmk compile -kb keychron/k1_max/iso/rgb -km k3Max_custom`
+- Flash with `qmk flash path/to/*.bin`
+
 ## Setup
 
 - Follow [these instructions](https://docs.qmk.fm/newbs_getting_started), but
