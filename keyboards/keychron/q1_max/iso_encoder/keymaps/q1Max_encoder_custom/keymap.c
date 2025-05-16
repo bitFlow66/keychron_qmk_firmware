@@ -16,7 +16,6 @@
 
 #include QMK_KEYBOARD_H
 #include "keychron_common.h"
-#include "sendstring_german.h"
 
 enum layers {
     MAC_BASE,
@@ -26,18 +25,14 @@ enum layers {
     // MAC_EXTRA,
 };
 
-enum custom_keycodes {
-    C_HE = SAFE_RANGE,
-};
-
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [MAC_BASE] = LAYOUT_iso_83(
         KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,      KC_F11,     KC_F12,     KC_DEL,             KC_MUTE,
         XXXXXXX,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,        XXXXXXX,    ALGR(KC_8), KC_BSPC,            KC_PGUP,
-        KC_TAB,   KC_LBRC,  KC_COMM,  KC_DOT,   KC_P,     KC_Y,     KC_F,     KC_G,     KC_C,     KC_R,     KC_L,        S(KC_7),    XXXXXXX,                        KC_PGDN,
+        KC_TAB,   KC_LBRC,  KC_COMM,  KC_DOT,   KC_P,     KC_Z,     KC_F,     KC_G,     KC_C,     KC_R,     KC_L,        S(KC_7),    XXXXXXX,                        KC_PGDN,
         KC_CAPS,  KC_A,     KC_O,     KC_E,     KC_U,     KC_I,     KC_D,     KC_H,     KC_T,     KC_N,     KC_S,        KC_SLSH,    KC_MINS,    KC_ENT,             KC_HOME,
-        KC_LSFT,  KC_QUOT,  KC_SCLN,  KC_Q,     KC_J,     KC_K,     KC_X,     KC_B,     KC_M,     KC_W,     KC_V,        KC_Z,       KC_RSFT,            KC_UP,
+        KC_LSFT,  KC_QUOT,  KC_SCLN,  KC_Q,     KC_J,     KC_K,     KC_X,     KC_B,     KC_M,     KC_W,     KC_V,        KC_Y,       KC_RSFT,            KC_UP,
         KC_LCTL,  LALT_T(KC_LGUI),  KC_LCMD,                                KC_SPC,                                 MO(MAC_FN),  KC_RCMD,    KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
 
     [MAC_FN] = LAYOUT_iso_83(
@@ -93,7 +88,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // Shifted ( => {
 const key_override_t write_boo = {
     .trigger_mods    = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-    .layers          = ~0,
+    .layers          = 1 << MAC_FN,
     .suppressed_mods = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
     .options         = ko_option_one_mod,
     .trigger         = S(KC_8),
@@ -104,7 +99,7 @@ const key_override_t write_boo = {
 // Shifted ) => }
 const key_override_t write_boc = {
     .trigger_mods    = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-    .layers          = ~0,
+    .layers          = 1 << MAC_FN,
     .suppressed_mods = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
     .options         = ko_option_one_mod,
     .trigger         = S(KC_9),
@@ -115,7 +110,7 @@ const key_override_t write_boc = {
 // Shifted [ => <
 const key_override_t write_bio = {
     .trigger_mods    = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-    .layers          = ~0,
+    .layers          = 1 << MAC_FN,
     .suppressed_mods = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
     .options         = ko_option_one_mod,
     .trigger         = ALGR(KC_8),
@@ -126,7 +121,7 @@ const key_override_t write_bio = {
 // Shifted ] => >
 const key_override_t write_bic = {
     .trigger_mods    = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-    .layers          = ~0,
+    .layers          = 1 << MAC_FN,
     .suppressed_mods = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
     .options         = ko_option_one_mod,
     .trigger         = ALGR(KC_9),
@@ -137,7 +132,7 @@ const key_override_t write_bic = {
 // Shifted ' => "
 const key_override_t write_marks = {
     .trigger_mods    = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-    .layers          = ~0,
+    .layers          = 1 << MAC_FN,
     .suppressed_mods = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
     .options         = ko_option_one_mod,
     .trigger         = S(KC_NUHS),
@@ -145,25 +140,25 @@ const key_override_t write_marks = {
     .enabled         = NULL,
 };
 
-// Shifted / => ?
-const key_override_t write_qmrk = {
-    .trigger_mods    = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-    .layers          = ~0,
-    .suppressed_mods = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-    .options         = ko_option_one_mod,
-    .trigger         = S(KC_7),
-    .replacement     = S(KC_MINS),
-    .enabled         = NULL,
-};
-
 // Shifted = => #
 const key_override_t write_eqhs = {
     .trigger_mods    = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
-    .layers          = ~0,
+    .layers          = 1 << MAC_FN,
     .suppressed_mods = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
     .options         = ko_option_one_mod,
     .trigger         = S(KC_0),
     .replacement     = KC_NUHS,
+    .enabled         = NULL,
+};
+
+// Shifted / => ?
+const key_override_t write_qmrk = {
+    .trigger_mods    = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
+    .layers          = 1 << MAC_BASE,
+    .suppressed_mods = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
+    .options         = ko_option_one_mod,
+    .trigger         = S(KC_7),
+    .replacement     = S(KC_MINS),
     .enabled         = NULL,
 };
 
