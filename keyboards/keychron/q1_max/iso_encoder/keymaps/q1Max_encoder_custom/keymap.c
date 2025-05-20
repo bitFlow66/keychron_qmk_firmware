@@ -162,7 +162,18 @@ const key_override_t write_qmrk = {
     .enabled         = NULL,
 };
 
+// Shifted ß => !
+const key_override_t write_exmk = {
+    .trigger_mods    = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
+    .layers          = 1 << MAC_BASE,
+    .suppressed_mods = MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT),
+    .options         = ko_option_one_mod,
+    .trigger         = KC_MINS,
+    .replacement     = S(KC_1),
+    .enabled         = NULL,
+};
+
 // This globally defines all key overrides to be used
 const key_override_t *key_overrides[] = {
-    &write_boo, &write_boc, &write_bio, &write_bic, &write_marks, &write_qmrk, &write_eqhs,
+    &write_boo, &write_boc, &write_bio, &write_bic, &write_marks, &write_qmrk, &write_eqhs, &write_exmk,
 };
